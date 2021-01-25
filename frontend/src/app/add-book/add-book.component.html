@@ -1,0 +1,81 @@
+
+
+
+<div class="container">
+    <!--title:string="";
+    author:string="";
+    price:number | undefined;
+    releaseDate:Date | undefined;
+    image:ImageModel | undefined;-->
+    <div [hidden]="submitted">
+        <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" [(ngModel)]="model.title"
+                    #title="ngModel">
+                <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+                    Last name is required
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="author">author</label>
+                <input type="text" class="form-control" id="author" name="author" [(ngModel)]="model.author"
+                    #author="ngModel">
+                <div [hidden]="author.valid || author.pristine" class="alert alert-danger">
+                    author is required
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="price">price</label>
+                <input type="number" class="form-control" id="price" name="price" [(ngModel)]="model.price"
+                    #price="ngModel" ngModel price required>
+                <div [hidden]="price.valid || price.pristine" class="alert alert-danger">
+                    price is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="releaseDate">Date de naissance</label>
+                <input type="date" class="form-control" id="releaseDate" name="releaseDate"
+                    [(ngModel)]="model.releaseDate">
+            </div>
+            <div class="form-group">
+                <label for="image">image</label>
+                <input type="file" (change)="onFileChanged($event)"class="form-control" id="image" name="image" 
+                    [(ngModel)]="model.image">
+            </div>
+            <div class="container row">
+                <div class="col-md-12">
+                    <div *ngIf=this.bookService.message>{{this.bookService.message}}</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" (click)="newBook(); bookForm.reset()">Reset</button>
+        </form>
+    </div>
+    <div class="container">
+    </div>
+    <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+            <div class="col-xs-3">author <br></div>
+            <div class="col-xs-9">{{ model.author }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">title <br></div>
+            <div class="col-xs-9">{{ model.title }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">price <br></div>
+            <div class="col-xs-9">{{ model.price }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">releaseDate <br></div>
+            <div class="col-xs-9">{{ model.releaseDate }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">return</button>
+    </div>
+</div>

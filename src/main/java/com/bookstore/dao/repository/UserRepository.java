@@ -9,5 +9,6 @@ import com.bookstore.dao.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 	Optional<User> findByUserName(String userName);
+	
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.bookstore.dao.IUserDao;
 import com.bookstore.dao.entity.User;
+import com.bookstore.dao.repository.UserRepository;
 import com.bookstore.dto.UserDto;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.service.IUserService;
@@ -74,5 +75,10 @@ public class UserService implements IUserService {
 		Optional<User> userOptional = userDao.findById(id);
 		return userOptional.orElseThrow(() -> new EntityNotFoundException("User not found with id : " + id));
 	}
+	
+	public Optional<User> findByUserName(String userName) {
+		return userDao.findByUserName(userName);
+	}
+	
 
 }

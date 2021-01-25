@@ -49,6 +49,7 @@ public class OrderDaoImpl implements IOrderDao {
 			OrderItem orderItem = new OrderItem();
 			orderItem.setOrder(order);
 			Book product = bookRepository.findById(p.getId()).get();
+			System.out.println(product);
 			orderItem.setBook(product);
 			orderItem.setPrice(product.getPrice());
 			orderItem.setQuantity(p.getQuantity());
@@ -57,6 +58,19 @@ public class OrderDaoImpl implements IOrderDao {
 		}
 		order.setTotalAmount(total);
 		return orderRepository.save(order);
+	}
+	
+	public double getTotal(OrderForm orderForm) {
+		double total = 0;
+		for (OrderBook p : orderForm.getBooks()) {
+			Book product = bookRepository.findById(p.getId()).get();
+			total += p.getQuantity() * product.getPrice();
+		}
+		return total;
+	}
+	
+	public Order getOrder(Long id) {
+		return orderRepository.getOne(id);
 	}
 
 }

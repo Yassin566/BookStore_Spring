@@ -17,5 +17,6 @@ public interface IUserDao {
 	boolean deleteUser(User user);
 
 	Optional<User> findById(Long id);
+	Optional<User> findByUserName(String userName);
 
 }

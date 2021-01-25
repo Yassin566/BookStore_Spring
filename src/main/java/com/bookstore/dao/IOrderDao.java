@@ -9,5 +9,5 @@ public interface IOrderDao {
 	List<Order> getAllOrders();
 
 	Order saveOrder(OrderForm orderForm);
-
+     double getTotal(OrderForm orderForm);
 }

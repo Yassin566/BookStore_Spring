@@ -1,0 +1,57 @@
+<div *ngIf="BookItems.values()!=null">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+        <table id="cart" class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:50%">Book Title</th>
+                    <th style="width:10%">Price</th>
+                    <th style="width:8%">Quantity</th>
+                    <th style="width:22%" class="text-center">Subtotal</th>
+                    <th style="width:10%"></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of BookItems">
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs"><img src="{{this.getImage(item.image)}}" alt="..."
+                                    class="img-responsive" /></div>
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">{{item.title}}</h4>
+                                <p>{{item.author}}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">{{item.price}}</td>
+                    <td data-th="Quantity">
+                        <input type="number" disabled class="form-control text-center"
+                            value="{{this.listResult[counter].quantity}}">
+                    </td>
+                    {{setSubTotal(this.listResult[counter].quantity,item.price)}}
+                    <td data-th="Subtotal" class="text-center">{{this.currentSubTotal}}</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
+                {{this.incCount()}}
+            </tbody>
+            {{this.resCount()}}
+            <tfoot>
+
+                <tr>
+                    <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                    <td colspan="2" class="hidden-xs"></td>
+                    <td class="hidden-xs text-center"><strong>Total {{this.total}}</strong></td>
+                    <td><a class="btn btn-success btn-block" (click)='onSubmit()'>Checkout <i
+                                class="fa fa-angle-right"></i></a></td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+<div>
+    <div ></div>
+</div>

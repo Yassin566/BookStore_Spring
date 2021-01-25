@@ -2,6 +2,7 @@ package com.bookstore.dao.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Book {
 	private String author;
 	private double price;
 	private Date releaseDate;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private ImageModel image;
 
 }

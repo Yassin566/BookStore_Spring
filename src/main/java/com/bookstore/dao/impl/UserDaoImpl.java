@@ -56,5 +56,9 @@ public class UserDaoImpl implements IUserDao {
 	public Optional<User> findById(Long id) {
 		return userRepository.findById(id);
 	}
+	
+	public Optional<User> findByUserName(String userName) {
+		return userRepository.findByUserName(userName);
+	}
 
 }

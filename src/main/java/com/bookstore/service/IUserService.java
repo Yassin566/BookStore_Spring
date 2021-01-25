@@ -25,5 +25,7 @@ public interface IUserService {
 	boolean deleteByUser(User user);
 
 	User findById(Long id);
+	
+	Optional<User> findByUserName(String userName);
 
 }
